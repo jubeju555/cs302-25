@@ -5,6 +5,8 @@
 #include <sstream>
 #include <algorithm>
 #include <cstdlib>
+#include <array>
+using namespace std;
 int storearray(){
 
     return 0;
@@ -12,7 +14,7 @@ int storearray(){
 }
 
 int rotatearray(){
-
+    
     return 0;
 }
 
@@ -22,7 +24,7 @@ int printarray(){
 
 int readarray(){
     int n;
-    array<int, n> arr;
+    vector<int> arr(n);
     cin >> n;
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
