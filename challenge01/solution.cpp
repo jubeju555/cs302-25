@@ -9,7 +9,6 @@
 using namespace std;
 
 int storearray(){
-    
     return 0;
 
 }
@@ -38,25 +37,25 @@ if (char direct = 'R')
     return 0;
 }
 
-int printarray(){
-    int n;
-    vector<int> arr(n);
-    cin >> n;
-    for (int i = 0; i < n; i++) {
-        cout << arr[i] << " ";
-    }
-    return 0;
-}
+// int printarray(){
+//     int n;
+//     vector<int> arr(n);
+//     cin >> n;
+//     for (int i = 0; i < n; i++) {
+//         cout << arr[i] << " ";
+//     }
+//     return 0;
+// }
 
-int readarray(){
-    int n;
-    vector<int> arr(n);
-    cin >> n;
-    for (int i = 0; i < n; i++) {
-        cin >> arr[i];
-    }
-    return 0;
-}
+// int readarray(){
+//     int n;
+//     vector<int> arr(n);
+//     cin >> n;
+//     for (int i = 0; i < n; i++) {
+//         cin >> arr[i];
+//     }
+//     return 0;
+// }
 int main(int argc, char *argv[]) {
     int n;
     vector<int> arr(n);
