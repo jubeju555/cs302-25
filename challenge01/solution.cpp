@@ -13,7 +13,16 @@ int storearray(){
 
 }
 
-int rotatearray(){
+int rotatearray(vector<int> arr, int d){
+   int n = arr.size();
+
+    int d = d % n;
+
+    vector<int> temp(d);
+
+    for (int i = 0; i < d; i++) {
+        temp[i] = arr[i];
+    }
     
     return 0;
 }
