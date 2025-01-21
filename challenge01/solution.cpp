@@ -22,6 +22,7 @@ int printarray(){
 
 int readarray(){
     int n;
+    array<int, n> arr;
     cin >> n;
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
