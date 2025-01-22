@@ -31,11 +31,11 @@ int rotatearray(vector<int> arr, int index, char Dir)
 
    index = index % size;
     // cout << "index: " << d << endl;
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size - 1; i++)
     {
         cout << arr[(i + index) % size] << " ";
     }
-
+    cout << arr[(size - 1 + index) % size];
     cout << endl;
     return 0;
 }
