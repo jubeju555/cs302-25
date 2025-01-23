@@ -6,18 +6,11 @@ challenge 1
 this program takes an array and shifts it a certian amount left or right depending on the input*/
 #include <iostream>
 #include <vector>
-#include <string>
-#include <sstream>
 #include <algorithm>
 #include <cstdlib>
 #include <cstdio>
-#include <array>
 using namespace std;
 
-int storearray()
-{
-    return 0;
-}
 // rotate the array, by d elements, in the direction d
 int rotatearray(vector<int> arr, int index, char Dir)
 {
@@ -28,7 +21,6 @@ int rotatearray(vector<int> arr, int index, char Dir)
     {
        index+= 5;
     }
-
    index = index % size;
     // cout << "index: " << d << endl;
     for (int i = 0; i < size - 1; i++)
@@ -39,6 +31,7 @@ int rotatearray(vector<int> arr, int index, char Dir)
     cout << endl;
     return 0;
 }
+// read in the line into vector, index, and direction
 int main(int argc, char *argv[])
 {
     int size, index;
