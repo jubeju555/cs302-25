@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
     {
         cin >> arr[i];
     }
-
+    bool first = true;
     sort(arr.begin(), arr.end());
     int smalldiff = INT_MAX;
 
@@ -31,7 +31,6 @@ int main(int argc, char *argv[]) {
     {
         smalldiff = min(smalldiff, arr[i+1]-arr[i]);
     }
-
     for (int i = 0; i < n-1; i++)
     {
         if(arr[i+1]-arr[i] == smalldiff){
