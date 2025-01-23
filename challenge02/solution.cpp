@@ -35,13 +35,16 @@ int findclosest(){
     for (int i = 0; i < n-1; i++)
     {
         if(arr[i+1]-arr[i] == smalldiff){
-            cout << arr[i] << " " << arr[i+1] << " ";
+            cout << arr[i] << " " << arr[i+1];
         }
     }
-
+return 0;
 }
 
 int main(int argc, char *argv[]) {
-    findclosest();
+    int n;
+        findclosest();
+    
+
     return EXIT_SUCCESS;
 }
