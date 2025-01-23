@@ -10,34 +10,48 @@ takes a list of numbers and finds the closest numbers in the list
 #include <iostream>
 #include <vector>
 using namespace std;
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     int n;
-    while(cin >> n){
-        if(n == 0){
+    while (cin >> n)
+    {
+        if (n == 0)
+        {
             break;
         }
-    
-    vector<int> arr(n);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> arr[i];
-    }
-    bool first = true;
-    sort(arr.begin(), arr.end());
-    int smalldiff = INT_MAX;
 
-    // as you sort the array, the smallest difference will be between adjacent elements
-    for (int i = 0; i < n-1; i++)
-    {
-        smalldiff = min(smalldiff, arr[i+1]-arr[i]);
-    }
-    for (int i = 0; i < n-1; i++)
-    {
-        if(arr[i+1]-arr[i] == smalldiff){
-            cout << arr[i] << " " << arr[i+1] << " ";
+        vector<int> arr(n);
+        for (int i = 0; i < n; i++)
+        {
+            cin >> arr[i];
         }
-    }
-    cout << endl;
+
+        sort(arr.begin(), arr.end());
+        int smalldiff = INT_MAX;
+        bool firstpair = true;
+        // as you sort the array, the smallest difference will be between adjacent elements
+        for (int i = 0; i < n - 1; i++)
+        {
+            smalldiff = min(smalldiff, arr[i + 1] - arr[i]);
+        }
+        for (int i = 0; i < n - 1; i++)
+        {
+            if (arr[i + 1] - arr[i] == smalldiff)
+            {
+                // deals with space after (f me this took forever)
+                if (!firstpair)
+                {
+                    cout << " ";
+                }
+                else
+                {
+                    firstpair = false;
+                }
+                // prints the pairs
+                cout << arr[i] << " " << arr[i + 1];
+            }
+        }
+        cout << endl;
     }
     return 0;
 }
