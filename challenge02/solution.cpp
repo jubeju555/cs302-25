@@ -1,23 +1,22 @@
 // Challenge 02: Closest Numbers
-// Name:  xxxxx
-
-// Brief description:
-
-// This code solves yyyy based on the following idea/implementation...
-
+/*
+judah benjamin
+challenge02
+takes a list of numbers and finds the closest numbers in the list
+*/
 #include <algorithm>
 #include <climits>
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-
 using namespace std;
-
-// Main Execution
-
-int findclosest(){
+int main(int argc, char *argv[]) {
     int n;
-    cin >> n;
+    while(cin >> n){
+        if(n == 0){
+            break;
+        }
+    
     vector<int> arr(n);
     for (int i = 0; i < n; i++)
     {
@@ -39,13 +38,7 @@ int findclosest(){
             cout << arr[i] << " " << arr[i+1] << " ";
         }
     }
-return 0;
-}
-
-int main(int argc, char *argv[]) {
-    int n;
-    
-    findclosest();
-
+    cout << endl;
+    }
     return 0;
 }
