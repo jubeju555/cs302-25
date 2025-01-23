@@ -17,7 +17,7 @@ using namespace std;
 
 int findclosest(){
     int n;
-    cin >>n;
+    cin >> n;
     vector<int> arr(n);
     for (int i = 0; i < n; i++)
     {
@@ -26,6 +26,7 @@ int findclosest(){
 
     sort(arr.begin(), arr.end());
     int smalldiff = INT_MAX;
+
     // as you sort the array, the smallest difference will be between adjacent elements
     for (int i = 0; i < n-1; i++)
     {
@@ -35,7 +36,7 @@ int findclosest(){
     for (int i = 0; i < n-1; i++)
     {
         if(arr[i+1]-arr[i] == smalldiff){
-            cout << arr[i] << " " << arr[i+1];
+            cout << arr[i] << " " << arr[i+1] << " ";
         }
     }
 return 0;
@@ -43,8 +44,8 @@ return 0;
 
 int main(int argc, char *argv[]) {
     int n;
-        findclosest();
     
+    findclosest();
 
-    return EXIT_SUCCESS;
+    return 0;
 }
