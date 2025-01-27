@@ -9,9 +9,21 @@ bool is_palindrome_permutation(const string &s) {
   unordered_map<char, int> num_char;
   for (char c : s)
   {
-    num_char++;
+    num_char[c]++;
   }
-
+  int odd_count = 0;
+  for ( auto it = num_char.begin(); it != num_char.end(); it++)
+  {
+    if (it->second % 2 != 0)
+    {
+      odd_count++;
+    }
+  }
+  if (odd_count <= 1)
+  {
+    return (true);
+  }
+  
   
   return (false);
 }
@@ -19,6 +31,17 @@ bool is_palindrome_permutation(const string &s) {
 
 
 int main(int argc, char *argv[]) {
+  string s;
+  while (cin >> s)
+  {
+    if (is_palindrome_permutation(s)) {
+    cout << s << " is a palindrome permutation." << endl;
+  } else {
+    cout << s <<  "is not a palindrome permutation." << endl;
+  }
+  }
+   
+  
   return (0);
 }
 
