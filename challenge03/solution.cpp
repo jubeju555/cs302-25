@@ -12,7 +12,7 @@ bool is_palindrome_permutation(const string &s) {
     num_char[c]++;
   }
   int odd_count = 0;
-  for ( auto it = num_char.begin(); it != num_char.end(); it++)
+  for (auto it = num_char.begin(); it != num_char.end(); it++)
   {
     if (it->second % 2 != 0)
     {
@@ -23,25 +23,18 @@ bool is_palindrome_permutation(const string &s) {
   {
     return (true);
   }
-  
-  
   return (false);
 }
-
-
-
 int main(int argc, char *argv[]) {
   string s;
-  while (cin >> s)
+  while (getline(cin, s))
   {
-    if (is_palindrome_permutation(s)) {
-    cout << "\"" <<  s << "\"" << " is a palindrome permutation." << endl;
+    if (is_palindrome_permutation(s) == true) {
+    cout << "\"" <<  s << "\"" << " is a palindrome permutation" << endl;
   } else {
-    cout << "\"" <<  s << "\"" << "is not a palindrome permutation." << endl;
+    cout << "\"" <<  s << "\"" << " is not a palindrome permutation" << endl;
   }
   }
-   
-  
   return (0);
 }
 
