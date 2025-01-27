@@ -12,9 +12,9 @@ bool is_palindrome_permutation(const string &s) {
     num_char[c]++;
   }
   int odd_count = 0;
-  for (auto it = num_char.begin(); it != num_char.end(); it++)
+  for (string :: const_iterator it = s.begin(); it != s.end(); it++)
   {
-    if (it->second % 2 != 0)
+    if (num_char[*it] % 2 != 0)
     {
       odd_count++;
     }
