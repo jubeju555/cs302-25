@@ -35,9 +35,9 @@ int main(int argc, char *argv[]) {
   while (cin >> s)
   {
     if (is_palindrome_permutation(s)) {
-    cout << s << " is a palindrome permutation." << endl;
+    cout << "\"" <<  s << "\"" << " is a palindrome permutation." << endl;
   } else {
-    cout << s <<  "is not a palindrome permutation." << endl;
+    cout << "\"" <<  s << "\"" << "is not a palindrome permutation." << endl;
   }
   }
    
