@@ -1,40 +1,49 @@
 // Challenge 03: Palindrome Permutation
+/*
+judah benjamin
+this code checks whether a string is a palindrom permutation*/
 #include <iostream>
 #include <string>
 #include <unordered_map>
 using namespace std;
-
-bool is_palindrome_permutation(const string &s) {
-  // using a map to store and check how oftern char repetition happens
+// use unordered map to store num of chars in each sequaence, then mod by 2 to check if palindrome
+bool is_palindrome_permutation(const string &readline)
+{
+    int permcount = 0;
+  
   unordered_map<char, int> num_char;
-  for (char c : s)
+  for (char c : readline)
   {
     num_char[c]++;
   }
-  int odd_count = 0;
-  for (string :: const_iterator it = s.begin(); it != s.end(); it++)
+// if num of chars is odd, increment permcount
+  for (string ::const_iterator it = readline.begin(); it != readline.end(); it++)
   {
+
     if (num_char[*it] % 2 != 0)
     {
-      odd_count++;
+      permcount++;
     }
-  }
-  if (odd_count <= 1)
-  {
-    return (true);
+    if (permcount < 1)
+    {
+      return (true);
+    }
   }
   return (false);
 }
-int main(int argc, char *argv[]) {
-  string s;
-  while (getline(cin, s))
+int main(int argc, char *argv[])
+{
+  string readline;
+  while (getline(cin, readline))
   {
-    if (is_palindrome_permutation(s) == true) {
-    cout << "\"" <<  s << "\"" << " is a palindrome permutation" << endl;
-  } else {
-    cout << "\"" <<  s << "\"" << " is not a palindrome permutation" << endl;
-  }
+    if (is_palindrome_permutation(readline) == true)
+    {
+      cout << "\"" << readline << "\"" << " is a palindrome permutation" << endl;
+    }
+    else
+    {
+      cout << "\"" << readline << "\"" << " is not a palindrome permutation" << endl;
+    }
   }
   return (0);
 }
-
