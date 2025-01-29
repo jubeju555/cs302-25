@@ -26,7 +26,6 @@ bool is_palindrome_permutation(const string &readline) {
             return false;
         }
     }
-    
     return true;
 }
 
