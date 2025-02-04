@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
       graph[src].push_back(dst);
 
 
-      if (graph.find(src) != graph.end() && dfs(graph, src, dst, visited))
+      if (graph.find(src) != graph.end() && dfs(graph, src, dst, visited) == true)
       {
         cout << "In Graph " << testnum << " there is a path from " << src << " to " << dst << endl;
       }
