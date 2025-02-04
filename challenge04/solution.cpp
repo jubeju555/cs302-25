@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <algorithm>
 using namespace std;
 
 // Main Execution
@@ -21,14 +22,9 @@ bool dfs(unordered_map<string, vector<string>> graph, string start, string end, 
     {
       return true;
     }
-
   }
-
-  return true;
-}
-int main(int argc, char *argv[]) {
-//   ;
-//   string line;
+  return false;
+};
 //   while (getline(cin, line))
 //   {
 //     stringstream ss(line);
@@ -64,7 +60,19 @@ int main(int argc, char *argv[]) {
 // cout << "graph: " << endl;
 // cout << "graph[0]: " << graph["0"].size() << endl;
   
-  return (0);
+int main(int argc, char *argv[]) {
+  dfs();
+  unordered_map<string, vector<string>> graph;
+  vector<string> visited;
+  string start = "A"; // Example start node
+  string end = "B"; // Example end node
+  if (dfs(graph, start, end, visited)) {
+    cout << "Path exists from " << start << " to " << end << endl;
+  } else {
+    cout << "No path exists from " << start << " to " << end << endl;
+  }
+
+  return 0;
 }
 
 
