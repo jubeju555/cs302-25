@@ -4,17 +4,18 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #include <algorithm>
 using namespace std;
 
 // Main Execution
-bool dfs(unordered_map<string, vector<string>> graph, string start, string end, vector<string> visited)
+bool dfs(unordered_map<string, vector<string>> graph, string start, string end, unordered_set<string> visited)
 {
   if (start == end)
     return true;
   if (visited.begin() != visited.end())
     return false;
-  visited.push_back(start);
+  visited.insert(start);
 
   for (const string &node : graph[start])
   {
@@ -28,34 +29,46 @@ bool dfs(unordered_map<string, vector<string>> graph, string start, string end, 
 
 int main(int argc, char *argv[])
 {
-  unordered_map<string, vector<string>> graph;
+  int testnum = 0;
+  unordered_map<string, vector<string>> graph;      
+  unordered_set<string> visited;
+
   // NEDGES pairs of nodes where the first string is the source and the second string is the destination
   int npaths;
   while (true)
   {
     int nedges;
-    if (!(cin >> nedges)){
+    if (!(cin >> nedges))
+    {
       break;
     }
 
-  
     for (size_t i = 0; i < nedges; i++)
     {
       string start, end;
       cin >> start >> end;
       graph[start].push_back(end);
     }
-// NPATHS which is the number of paths or routes to search for
+    // NPATHS which is the number of paths or routes to search for
     int npaths;
     cin >> npaths;
+    testnum++;
     for (size_t i = 0; i < npaths; i++)
     {
-      string src,dst;
+      string src, dst;
       cin >> src >> dst;
       graph[src].push_back(dst);
+
+
+      if (graph.find(src) != graph.end() && dfs(graph, src, dst, visited))
+      {
+        cout << "In Graph " << testnum << " there is a path from " << src << " to " << dst << endl;
+      }
+      else
+      {
+        cout << "In Graph " << testnum << " there is no path from " << src << " to " << dst << endl;
+      }
     }
-    
-    
   }
   // unordered_map<string, vector<string>> graph;
   // vector<string> visited;
@@ -64,14 +77,7 @@ int main(int argc, char *argv[])
   // int graphnum;
   // while (cin >> graphnum >> start >> end)
   // {
-  //   if (dfs(graph, start, end, visited) == true)
-  //   {
-  //     cout << "In Graph " << graphnum << " there is a path from " << start << " to " << end << endl;
-  //   }
-  //   else if (dfs(graph, start, end, visited) == false)
-  //   {
-  //     cout << "In Graph " << graphnum << " there is no path from " << start << " to " << end << endl;
-  //   }
+  //
   // }
 
   return 0;
