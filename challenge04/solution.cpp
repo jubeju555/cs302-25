@@ -8,7 +8,6 @@ using namespace std;
 
 // Main Execution
 
-
 int main(int argc, char *argv[]) {
   unordered_map<string, vector<string>> graph;
   string line;
@@ -30,7 +29,22 @@ int main(int argc, char *argv[]) {
       graph[node].push_back("");
     }
   }
+  while (cin >> line)
+  {
+    if(graph.find(line) == graph.end())
+    {
+      cout << "In Graph " << line << " there no path from " << node[1] << " to" << endl;
+    }else
+    {
+      cout << "In Graph " << line << " there a " << graph[line].size() << " paths" << endl;
+    }
+   
 
+  }
+  
+cout << "graph size: " << graph.size() << endl;
+cout << "graph: " << endl;
+cout << "graph[0]: " << graph["0"].size() << endl;
   
   return (0);
 }
