@@ -8,7 +8,8 @@
 using namespace std;
 
 // Main Execution
-bool dfs(unordered_map<string, vector<string>> graph, string start, string end, vector<string> visited){
+bool dfs(unordered_map<string, vector<string>> graph, string start, string end, vector<string> visited)
+{
   if (start == end)
   {
     return true;
@@ -16,15 +17,16 @@ bool dfs(unordered_map<string, vector<string>> graph, string start, string end, 
   visited.push_back(start);
   for (const string &node : graph[start])
   {
-  if (find(visited.begin(), visited.end(), node) == visited.end())
-  {
-    if (dfs(graph, node, end, visited))
+    if (find(visited.begin(), visited.end(), node) == visited.end())
     {
-      return true;
+      if (dfs(graph, node, end, visited))
+      {
+        return true;
+      }
     }
+    return false;
   }
-  return false;
-};
+}
 //   while (getline(cin, line))
 //   {
 //     stringstream ss(line);
@@ -52,27 +54,32 @@ bool dfs(unordered_map<string, vector<string>> graph, string start, string end, 
 //     {
 //       cout << "In Graph " << line << " there a " << graph[line].size() << " paths" << endl;
 //     }
-   
 
 //   }
-  
+
 // cout << "graph size: " << graph.size() << endl;
 // cout << "graph: " << endl;
 // cout << "graph[0]: " << graph["0"].size() << endl;
-  
-int main(int argc, char *argv[]) {
-  dfs();
+
+int main(int argc, char *argv[])
+{
   unordered_map<string, vector<string>> graph;
   vector<string> visited;
   string start = "A"; // Example start node
-  string end = "B"; // Example end node
-  if (dfs(graph, start, end, visited)) {
-    cout << "Path exists from " << start << " to " << end << endl;
-  } else {
-    cout << "No path exists from " << start << " to " << end << endl;
+  string end = "B";   // Example end node
+  while (cin >> start >> end)
+  {
+    if (dfs(graph, start, end, visited))
+  {
+    cout <<"In Graph " << start << " there is a path from " << start << " to " << end << endl;
   }
+  else
+  {
+    cout <<"In Graph " << start << " there is no path from " << start << " to " << end << endl;
+  }
+  }
+  
+  
 
   return 0;
 }
-
-
