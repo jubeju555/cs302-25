@@ -10,22 +10,46 @@ using namespace std;
 // Main Execution
 bool dfs(unordered_map<string, vector<string>> graph, string start, string end, vector<string> visited)
 {
-  if (start == end)
-  {
-    return true;
-  }
-  visited.push_back(start);
+  // if (start == end)
+  // {
+  //   return true;
+  // }
+  // visited.push_back(start);
   for (const string &node : graph[start])
   {
     if (find(visited.begin(), visited.end(), node) == visited.end())
     {
-      if (dfs(graph, node, end, visited))
+      visited.push_back(node);
+    }
+    if (dfs(graph, node, end, visited))
       {
         return true;
       }
-    }
-    return false;
   }
+  return false;
+}
+
+int main(int argc, char *argv[])
+{
+  
+  unordered_map<string, vector<string>> graph;
+  vector<string> visited;
+  string start = "A"; 
+  string end = "B";  
+  int graphnum;
+  while (cin >> graphnum >> start >> end)
+  {
+    if (dfs(graph, start, end, visited) == true)
+    {
+      cout << "In Graph " << graphnum << " there is a path from " << start << " to " << end << endl;
+    }
+    else if (dfs(graph, start, end, visited) == false)
+    {
+      cout << "In Graph " << graphnum << " there is no path from " << start << " to " << end << endl;
+    }
+  }
+
+  return 0;
 }
 //   while (getline(cin, line))
 //   {
@@ -60,26 +84,3 @@ bool dfs(unordered_map<string, vector<string>> graph, string start, string end, 
 // cout << "graph size: " << graph.size() << endl;
 // cout << "graph: " << endl;
 // cout << "graph[0]: " << graph["0"].size() << endl;
-
-int main(int argc, char *argv[])
-{
-  unordered_map<string, vector<string>> graph;
-  vector<string> visited;
-  string start = "A"; // Example start node
-  string end = "B";   // Example end node
-  while (cin >> start >> end)
-  {
-    if (dfs(graph, start, end, visited))
-  {
-    cout <<"In Graph " << start << " there is a path from " << start << " to " << end << endl;
-  }
-  else
-  {
-    cout <<"In Graph " << start << " there is no path from " << start << " to " << end << endl;
-  }
-  }
-  
-  
-
-  return 0;
-}
