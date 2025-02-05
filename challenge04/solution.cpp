@@ -30,7 +30,7 @@ int main()
   // NEDGES pairs of nodes where the first string is the source and the second string is the destination
   while (true)
   {
-    int nedges;
+    int nedges = 0;
     if (!(cin >> nedges))
     {
       break;
@@ -43,7 +43,7 @@ int main()
       graph[start].push_back(end);
     }
     // NPATHS which is the number of paths or routes to search for
-    int npaths;
+    int npaths = 0;
     cin >> npaths;
     testnum++;
     for (size_t i = 0; i < npaths; i++)
