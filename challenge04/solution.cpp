@@ -11,24 +11,19 @@ using namespace std;
 // Main Execution
 bool dfs(unordered_map<string, vector<string>> &graph, string start, string end, unordered_set<string> &visited)
 {
-  if (start == end)
-    return true;
-  if (visited.find(start) != visited.end())
-    return false;
+  if (start == end)return true;
+  if (visited.find(start) != visited.end())return false;
+  
   visited.insert(start);
   for (const string &node : graph[start])
   {
-    if (dfs(graph, node, end, visited))
-    {
-      return true;
-    }
+    if (dfs(graph, node, end, visited))return true;
   }
   return false;
 }
 
 int main()
 {
-
   int testnum = 0;
   unordered_map<string, vector<string>> graph;
   unordered_set<string> visited;
@@ -65,6 +60,7 @@ int main()
       {
         cout << "In Graph " << testnum << " there is no path from " << src << " to " << dst << endl;
       }
+      // fix for seg faul, was causing infinite loop 
       visited.clear();
     }
   }
