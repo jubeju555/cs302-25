@@ -13,7 +13,6 @@ bool dfs(unordered_map<string, vector<string>> &graph, string start, string end,
 {
   if (start == end)return true;
   if (visited.find(start) != visited.end())return false;
-  
   visited.insert(start);
   for (const string &node : graph[start])
   {
@@ -54,12 +53,13 @@ int main()
 
       if (graph.find(src) != graph.end() && dfs(graph, src, dst, visited))
       {
-        cout << "In Graph " << testnum << " there is a path from " << src << " to " << dst << endl;
+        cout << "In Graph " << testnum << " there is a path from " << src << " to " << dst;
       }
       else
       {
-        cout << "In Graph " << testnum << " there is no path from " << src << " to " << dst << endl;
+        cout << "In Graph " << testnum << " there is no path from " << src << " to " << dst;
       }
+      cout << endl;
       // fix for seg faul, was causing infinite loop 
       visited.clear();
     }
