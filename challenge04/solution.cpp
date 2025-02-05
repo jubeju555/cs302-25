@@ -29,6 +29,7 @@ bool dfs(unordered_map<string, vector<string>> graph, string start, string end, 
 
 int main(int argc, char *argv[])
 {
+
   int testnum = 0;
   unordered_map<string, vector<string>> graph;      
   unordered_set<string> visited;
@@ -70,15 +71,5 @@ int main(int argc, char *argv[])
       }
     }
   }
-  // unordered_map<string, vector<string>> graph;
-  // vector<string> visited;
-  // string start = "A";
-  // string end = "B";
-  // int graphnum;
-  // while (cin >> graphnum >> start >> end)
-  // {
-  //
-  // }
-
   return 0;
 }
