@@ -9,14 +9,13 @@
 using namespace std;
 
 // Main Execution
-bool dfs(unordered_map<string, vector<string>> graph, string start, string end, unordered_set<string> visited)
+bool dfs(unordered_map<string, vector<string>> &graph, string start, string end, unordered_set<string> &visited)
 {
   if (start == end)
     return true;
-  if (visited.begin() != visited.end())
+  if (visited.find(start) != visited.end())
     return false;
   visited.insert(start);
-
   for (const string &node : graph[start])
   {
     if (dfs(graph, node, end, visited))
@@ -27,15 +26,14 @@ bool dfs(unordered_map<string, vector<string>> graph, string start, string end, 
   return false;
 }
 
-int main(int argc, char *argv[])
+int main()
 {
 
   int testnum = 0;
-  unordered_map<string, vector<string>> graph;      
+  unordered_map<string, vector<string>> graph;
   unordered_set<string> visited;
 
   // NEDGES pairs of nodes where the first string is the source and the second string is the destination
-  int npaths;
   while (true)
   {
     int nedges;
@@ -58,10 +56,8 @@ int main(int argc, char *argv[])
     {
       string src, dst;
       cin >> src >> dst;
-      graph[src].push_back(dst);
 
-
-      if (graph.find(src) != graph.end() && dfs(graph, src, dst, visited) == true)
+      if (graph.find(src) != graph.end() && dfs(graph, src, dst, visited))
       {
         cout << "In Graph " << testnum << " there is a path from " << src << " to " << dst << endl;
       }
@@ -69,6 +65,7 @@ int main(int argc, char *argv[])
       {
         cout << "In Graph " << testnum << " there is no path from " << src << " to " << dst << endl;
       }
+      visited.clear();
     }
   }
   return 0;
