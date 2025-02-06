@@ -17,6 +17,7 @@ bool dfs(unordered_map<string, vector<string>> &graph, string start, string end,
   for (const string &node : graph[start])
   {
     if (dfs(graph, node, end, visited))return true;
+    cout << "Visiting " << node << endl;
   }
   return false;
 }
