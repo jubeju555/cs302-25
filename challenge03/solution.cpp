@@ -1,3 +1,8 @@
+/*
+judah benjamin
+challenge 03
+thie program reads in a string of chars and checks if it is a palindrome permutation
+*/
 #include <iostream>
 #include <string>
 #include <unordered_map>
