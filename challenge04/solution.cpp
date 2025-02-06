@@ -17,7 +17,7 @@ bool dfs(unordered_map<string, vector<string>> &graph, string start, string end,
   for (const string &node : graph[start])
   {
     if (dfs(graph, node, end, visited))return true;
-    cout << "Visiting " << node << endl;
+    // cout << "Visiting " << node << endl;
   }
   return false;
 }
@@ -25,14 +25,13 @@ bool dfs(unordered_map<string, vector<string>> &graph, string start, string end,
 int main()
 {
   int testnum = 0;
-  unordered_map<string, vector<string>> graph;
-  unordered_set<string> visited;
 
   // NEDGES pairs of nodes where the first string is the source and the second string is the destination
   while (true)
   {
-    int nedges = 0;
-    if (!(cin >> nedges)) break;
+    int nedges;
+    if (!(cin >> nedges))break;
+    unordered_map<string, vector<string>> graph;
     for (int i = 0; i < nedges; i++)
     {
       string start, end;
@@ -40,25 +39,26 @@ int main()
       graph[start].push_back(end);
     }
     // NPATHS which is the number of paths or routes to search for
-    int npaths = 0;
-    cin >> npaths;
+    int npaths;
+    if (!(cin >> npaths)) break;
+    cout << "Graph " << testnum << endl;
     testnum++;
     for (int i = 0; i < npaths; i++)
     {
+      unordered_set<string> visited;
       string src, dst;
       cin >> src >> dst;
-
       if (graph.find(src) != graph.end() && dfs(graph, src, dst, visited))
       {
-        cout << "In Graph " << testnum << " there is a path from " << src << " to " << dst;
+        cout << "In Graph " << testnum << " there is a path from " << src << " to " << dst << endl;
       }
       else
       {
-        cout << "In Graph " << testnum << " there is no path from " << src << " to " << dst;
+        cout << "In Graph " << testnum << " there is no path from " << src << " to " << dst << endl;
       }
-      cout << endl;
-      // fix for seg faul, was causing infinite loop 
-      visited.clear();
+      
+      // fix for seg faul, was causing infinite loop
+      // visited.clear();
     }
   }
   return 0;
