@@ -31,12 +31,8 @@ int main()
   while (true)
   {
     int nedges = 0;
-    if (!(cin >> nedges))
-    {
-      break;
-    }
-
-    for (size_t i = 0; i < nedges; i++)
+    if (!(cin >> nedges)) break;
+    for (int i = 0; i < nedges; i++)
     {
       string start, end;
       cin >> start >> end;
@@ -46,7 +42,7 @@ int main()
     int npaths = 0;
     cin >> npaths;
     testnum++;
-    for (size_t i = 0; i < npaths; i++)
+    for (int i = 0; i < npaths; i++)
     {
       string src, dst;
       cin >> src >> dst;
