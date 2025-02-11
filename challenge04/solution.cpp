@@ -1,4 +1,7 @@
 // Challenge 04: Graph Paths
+// judah benjamin
+// feb 11 2025
+//  this program reads in graph and tell me whether there is a path between 2 nodes, based on neges and npaths
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -25,6 +28,7 @@ bool dfs(unordered_map<string, vector<string>> &graph, string start, string end,
 int main()
 {
   int testnum = 0;
+  // created bool and forcefully printed out a new line to separate test cases ;)
   bool testcasespace= true;
   // NEDGES pairs of nodes where the first string is the source and the second string is the destination
   while (true)
@@ -60,9 +64,6 @@ int main()
       }
       cout << "path from " << src << " to " << dst << '\n';
 
-      // fix for seg faul, was causing infinite loop
-      // visited.clear();
-      // if(!cin.eof()) cout << endl;
 
     }
 
