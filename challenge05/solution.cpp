@@ -58,6 +58,7 @@ void printMST(vector<vector<int>> graph, int V)
 int main(int argc, char *argv[])
 {
   int V;
+  
   vector<vector<int>> graph;
   while (cin >> V)
   {
