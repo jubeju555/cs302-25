@@ -53,7 +53,8 @@ int primMST(vector<vector<int>> graph, int V)
 void printMST(vector<vector<int>> graph, int V)
 {
   int mst_wt = primMST(graph, V);
-  cout << "Minimum Spanning Tree: " << mst_wt;
+
+  // cout << "Minimum Spanning Tree: " << mst_wt;
 }
 int main(int argc, char *argv[])
 {
