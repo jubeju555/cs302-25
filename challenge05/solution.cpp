@@ -3,8 +3,8 @@
 // learned what a mspamming tree was from geeksforgeeks
 #include <iostream>
 #include <vector>
-using namespace std;
 #include <climits>
+using namespace std;
 
 // Function to find the vertex with the minimum key value
 int minkey(vector<int> key, vector<bool> mstSet, int V)
