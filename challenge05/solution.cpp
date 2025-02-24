@@ -18,10 +18,11 @@ int minkey(vector<int> key, vector<bool> mstSet, int V)
 }
 
 // Main Execution
-int primMST(vector<vector<int>> graph, int V)
+int primMST(vector<vector<int>> &graph, int V, vector<int> &parent)
 {
-  // stores constructed MST
-  vector<int> parent(V);
+  // stores MST
+  // vector<int> parent(V);
+
   // used to pick minimum weight edge
   vector<int> key(V, INT_MAX);
   // represents all vertices in MST
@@ -29,9 +30,12 @@ int primMST(vector<vector<int>> graph, int V)
 
   key[0] = 0;
   parent[0] = -1;
+
   for (int i = 0; i < V - 1; i++)
   {
     int u = minkey(key, mstSet, V);
+    if (u == -1) continue;
+
     mstSet[u] = true;
 
     for (int v = 0; v < V; v++)
@@ -51,33 +55,50 @@ int primMST(vector<vector<int>> graph, int V)
   return mstwt;
 }
 
-void printMST(vector<vector<int>> graph, int V)
+void printMST(vector<vector<int>> &graph, int V)
 {
-  int mst_wt = primMST(graph, V);
-  cout << mst_wt << endl;
+  vector<int> parent(V);
+  int mst_wt = primMST(graph, V, parent);
+  printf("%d\n", mst_wt);
+  // printf("Edges in MST\n");
+  for (int i = 1; i < V; i++)
+  {
+    if (parent[i] != -1)
+    {
+      // geeks4geeks use min for first and max for second so the order of the char makes sense 
+      char a = 'A' + min(parent[i], i);
+      char b = 'A' + max(parent[i], i);
+      printf("%c%c\n", a, b);
+      if(cout.eof()) cout << endl;
+    }
+  }
 }
 
 int main(int argc, char *argv[])
 {
   int V;
-  
-  vector<vector<int>> graph;
+
   while (cin >> V)
   {
-    graph.clear();
+
+    if (V <= 0) break;
+  vector<vector<int>> graph(V, vector<int>(V));
+  
     for (int i = 0; i < V; i++)
     {
-      vector<int> row;
       for (int j = 0; j < V; j++)
       {
         int temp;
         cin >> temp;
-        row.push_back(temp);
+        graph[i][j] = (temp == -1) ? 0 : temp;
       }
-      graph.push_back(row);
+    //    graph.clear();
+    // graph.resize(V); 
+    // graph[i] = row;
     }
-    printMST(graph, V);
-  } 
+      printMST(graph, V);
+
+  }
 
   return 0;
 }
