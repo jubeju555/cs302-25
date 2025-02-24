@@ -1,4 +1,9 @@
 // challenge 05
+// MST
+// find the minimum spanning tree of a graph
+// using Prim's algorithm
+// judah benjamin 
+// feb 24 2025
 #include <iostream>
 #include <vector>
 #include <climits>
