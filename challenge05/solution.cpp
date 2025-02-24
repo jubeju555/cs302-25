@@ -1,6 +1,4 @@
-// Challenge 5: Minimum Spanning Tree
-
-// learned what a mspamming tree was from geeksforgeeks
+// challenge 05
 #include <iostream>
 #include <vector>
 #include <climits>
@@ -9,28 +7,26 @@ using namespace std;
 // Function to find the vertex with the minimum key value
 int minkey(vector<int> key, vector<bool> mstSet, int V)
 {
-  int min = INT_MAX, min_index;
+  int min = INT_MAX, min_index = -1;
   for (int v = 0; v < V; v++)
-    if (mstSet[v] == false && key[v] < min)
-      min = key[v], min_index = v;
+    if (!mstSet[v] && key[v] < min)
+    {
+      min = key[v];
+      min_index = v;
+    }
   return min_index;
 }
 
 // Main Execution
 int primMST(vector<vector<int>> graph, int V)
 {
-  // stors constructed MST
-  vector<int> parent;
+  // stores constructed MST
+  vector<int> parent(V);
   // used to pick minimum weight edge
-  vector<int> key;
+  vector<int> key(V, INT_MAX);
   // represents all vertices in MST
   vector<bool> mstSet(V, false);
 
-  for (int i = 0; i < V; i++)
-  {
-    key.push_back(INT_MAX);
-    parent.push_back(-1);
-  }
   key[0] = 0;
   parent[0] = -1;
   for (int i = 0; i < V - 1; i++)
@@ -47,15 +43,20 @@ int primMST(vector<vector<int>> graph, int V)
       }
     }
   }
-
-  return 0;
+  int mstwt = 0;
+  for (int i = 1; i < V; i++)
+  {
+    mstwt += graph[i][parent[i]];
+  }
+  return mstwt;
 }
+
 void printMST(vector<vector<int>> graph, int V)
 {
   int mst_wt = primMST(graph, V);
-
-  // cout << "Minimum Spanning Tree: " << mst_wt;
+  cout << mst_wt << endl;
 }
+
 int main(int argc, char *argv[])
 {
   int V;
@@ -63,6 +64,7 @@ int main(int argc, char *argv[])
   vector<vector<int>> graph;
   while (cin >> V)
   {
+    graph.clear();
     for (int i = 0; i < V; i++)
     {
       vector<int> row;
@@ -74,7 +76,8 @@ int main(int argc, char *argv[])
       }
       graph.push_back(row);
     }
+    printMST(graph, V);
   } 
-printMST(graph, V);
-  return (0);
+
+  return 0;
 }
