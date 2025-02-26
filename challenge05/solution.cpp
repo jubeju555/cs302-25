@@ -63,6 +63,8 @@ int primMST(vector<vector<int>> &graph, int V, vector<int> &parent)
 
 void printMST(vector<vector<int>> &graph, int V)
 {
+  // looked back at how i got past the spaces for challenge 4, this is what i did i think 
+
     vector<int> parent(V);
     int mst_wt = primMST(graph, V, parent);
     printf("%d\n", mst_wt);  // Print MST weight
@@ -83,7 +85,7 @@ void printMST(vector<vector<int>> &graph, int V)
     // Print sorted edges **without extra blank lines**
     for (size_t i = 0; i < edges.size(); i++)
     {
-        printf("%c%c\n", edges[i].first, edges[i].second);
+        cout << edges[i].first <<  edges[i].second << "\n";
        
     }
 }
