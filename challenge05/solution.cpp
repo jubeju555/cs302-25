@@ -79,17 +79,13 @@ void printMST(vector<vector<int>> &graph, int V)
             edges.push_back({a, b});
         }
     }
-
     sort(edges.begin(), edges.end());
-
     // Print sorted edges **without extra blank lines**
     for (size_t i = 0; i < edges.size(); i++)
     {
-        cout << edges[i].first <<  edges[i].second << "\n";
-       
+      printf("%c%c\n", edges[i].first, edges[i].second);
     }
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -109,13 +105,8 @@ int main(int argc, char *argv[])
         cin >> temp;
         graph[i][j] = (temp == -1) ? 0 : temp;
       }
-    //    graph.clear();
-    // graph.resize(V); 
-    // graph[i] = row;
     }
-      printMST(graph, V);
-
+    printMST(graph, V);
   }
-
   return 0;
 }
