@@ -7,6 +7,7 @@
 #include <iostream>
 #include <vector>
 #include <climits>
+#include <algorithm>
 using namespace std;
 
 // Function to find the vertex with the minimum key value
@@ -62,22 +63,31 @@ int primMST(vector<vector<int>> &graph, int V, vector<int> &parent)
 
 void printMST(vector<vector<int>> &graph, int V)
 {
-  vector<int> parent(V);
-  int mst_wt = primMST(graph, V, parent);
-  printf("%d\n", mst_wt);
-  // printf("Edges in MST\n");
-  for (int i = 1; i < V; i++)
-  {
-    if (parent[i] != -1)
+    vector<int> parent(V);
+    int mst_wt = primMST(graph, V, parent);
+    printf("%d\n", mst_wt);  // Print MST weight
+
+    vector<pair<char, char>> edges;
+    for (int i = 1; i < V; i++)
     {
-      // geeks4geeks use min for first and max for second so the order of the char makes sense 
-      char a = 'A' + min(parent[i], i);
-      char b = 'A' + max(parent[i], i);
-      printf("%c%c\n", a, b);
-      if(cout.eof()) cout << endl;
+        if (parent[i] != -1)
+        {
+            char a = 'A' + min(parent[i], i);
+            char b = 'A' + max(parent[i], i);
+            edges.push_back({a, b});
+        }
     }
-  }
+
+    sort(edges.begin(), edges.end());
+
+    // Print sorted edges **without extra blank lines**
+    for (size_t i = 0; i < edges.size(); i++)
+    {
+        printf("%c%c\n", edges[i].first, edges[i].second);
+       
+    }
 }
+
 
 int main(int argc, char *argv[])
 {
