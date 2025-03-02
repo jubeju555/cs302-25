@@ -2,7 +2,7 @@
 // MST
 // find the minimum spanning tree of a graph
 // using Prim's algorithm
-// judah benjamin 
+// judah benjamin
 // feb 24 2025
 #include <iostream>
 #include <vector>
@@ -40,7 +40,8 @@ int primMST(vector<vector<int>> &graph, int V, vector<int> &parent)
   for (int i = 0; i < V - 1; i++)
   {
     int u = minkey(key, mstSet, V);
-    if (u == -1) continue;
+    if (u == -1)
+      continue;
 
     mstSet[u] = true;
 
@@ -63,40 +64,49 @@ int primMST(vector<vector<int>> &graph, int V, vector<int> &parent)
 
 void printMST(vector<vector<int>> &graph, int V)
 {
-  // looked back at how i got past the spaces for challenge 4, this is what i did i think 
+  // looked back at how i got past the spaces for challenge 4, this is what i did i think
 
-    vector<int> parent(V);
-    int mst_wt = primMST(graph, V, parent);
-    printf("%d\n", mst_wt);  // Print MST weight
+  vector<int> parent(V);
+  int mst_wt = primMST(graph, V, parent);
+  // Print MST weight
 
-    vector<pair<char, char>> edges;
-    for (int i = 1; i < V; i++)
+  printf("%d\n", mst_wt);
+  vector<pair<char, char>> edges;
+  for (int i = 1; i < V; i++)
+  {
+    if (parent[i] != -1)
     {
-        if (parent[i] != -1)
-        {
-            char a = 'A' + min(parent[i], i);
-            char b = 'A' + max(parent[i], i);
-            edges.push_back({a, b});
-        }
+      char a = 'A' + min(parent[i], i);
+      char b = 'A' + max(parent[i], i);
+      edges.push_back({a, b});
     }
-    sort(edges.begin(), edges.end());
-    // Print sorted edges **without extra blank lines**
-    for (size_t i = 0; i < edges.size(); i++)
-    {
-      printf("%c%c\n", edges[i].first, edges[i].second);
-    }
+  }
+  sort(edges.begin(), edges.end());
+  for (size_t i = 0; i < edges.size(); i++)
+  {
+    if (i > 0)
+      printf("\n");
+    printf("%c%c", edges[i].first, edges[i].second);
+  }
+  printf("\n");
 }
 
 int main(int argc, char *argv[])
 {
   int V;
+  // same way i solved it for challenge 3 i think i just created a bool
+  bool first = true;
 
   while (cin >> V)
   {
+    if (V <= 0)
+      break;
 
-    if (V <= 0) break;
-  vector<vector<int>> graph(V, vector<int>(V));
-  
+    if (!first)
+      printf("\n");
+    first = false;
+
+    vector<vector<int>> graph(V, vector<int>(V));
     for (int i = 0; i < V; i++)
     {
       for (int j = 0; j < V; j++)
