@@ -3,26 +3,29 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <algorithm>
 using namespace std;
 
 void DNAsequences(string s) {
     unordered_map<string, int> dnamap;
     vector<string> DNA;
-    for (int i = 0; i <= s.size(); i++) {
+    if (s.size() < 9) cout << "-1" << endl; return;
+    for (size_t i = 0; i <= s.size() - 9; i++) {
         string substring = s.substr(i, 9);
-        if (dnamap[substring] == 1) {
-            DNA.push_back(substring);
-        }
         dnamap[substring]++;
+        if (dnamap[substring] == 2) DNA.push_back(substring);   
     }
+    if(DNA.empty()){
+        printf("-1\n");
+    }else{
+    sort(DNA.begin(), DNA.end());
     for (const string& seq : DNA) {
-        if (dnamap[seq] == 2)
-        {
-            cout << seq;
+            cout << seq << endl;
         }
-      if(cin.eof())cout << endl;
+        printf("-1\n");
     }
-    cout << "-1" << endl;
+        
+    
 }
 
 int main(int argc, char *argv[]) {
