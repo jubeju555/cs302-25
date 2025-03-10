@@ -13,7 +13,6 @@ void DNAsequences(string s) {
 cout << "-1" << endl;
         return;
     }
-
     for (size_t i = 0; i <= s.size() - 9; i++) {
         string substring = s.substr(i, 9);
         dnamap[substring]++;
