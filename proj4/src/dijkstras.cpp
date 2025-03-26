@@ -62,7 +62,7 @@ int graph::dijkstrasalgo()
 {
     vector<int> distance;
     vector<bool> visited;
-    int v ;
+    int v;
     int start = 0;
     for (int i = 0; i < v; i++)
     {
@@ -84,7 +84,6 @@ int graph::dijkstrasalgo()
                 distance[i] = distance[u] + weight;
             }
         }
-        // printf("%d", visited[u]);
     }
     printsolution(distance.data(), v);
    
@@ -184,6 +183,8 @@ int main(int argc, char *argv[])
     directions.push_back(pair<int, int>(1, 0));
     directions.push_back(pair<int, int>(0, -1));
     directions.push_back(pair<int, int>(0, 1));
+
+    
 
     // Call Dijkstra's algorithm
     g.dijkstrasalgo();
