@@ -10,6 +10,8 @@
 #include <algorithm>
 #include <set>
 #include <climits>
+#include <map>
+#include <string>
 
 
 
@@ -32,17 +34,18 @@ struct graph {
 int graph::mindist()
 {
     
-    int min = INT_MAX, min_index;
+    int min = INT_MAX, minindex;
     int verti = 0;
     for (int i = 0; i < verti; i++)
     {
         if (visited.find(i) == visited.end() && dist[i] <= min)
         {
             min = dist[i];
-            min_index = i;
+            minindex = i;
         }
     }
-    return min_index;
+    printf("%d", minindex);
+    return minindex;
 }
 
 
@@ -89,34 +92,74 @@ int graph::dijkstrasalgo()
             }
         }
     }
-
     // Print the constructed distance array
     printSolution(dist.data(), v);
-
-    
 }
+
+
+
+/*
+order of read in
+amount of pairs
+pairs
+graph(rows, columns)
+start row  start col
+target row target col
+*/
+
+
 int main(int argc, char *argv[])
 {
-    graph g;
-    int weight, n;
-    int graphx, graphy;
-    while (cin >> n)
+    // order of read in
+    int numpairs;
+    map<string, int> tilecosts;
+    int mapRows, mapCols;
+    vector<vector<string>> mapgrid;
+    int startRow, startCol, endRow, endCol;
+
+    // Read the number of tile types
+    cin >> numpairs;
+
+    // Read tile names and their costs
+    for (int i = 0; i < numpairs; i++)
     {
-        // dijsktrasalgo(n);
-        // cout << "Enter the number of nodes: " << n << endl;
-        // reads in number of types and store the weight of each node
-        cin >> n;
-        vector<pair<char, int>> nodes;
-        for (int i = 0; i < n; ++i)
-        {
-            char node;
-            int weight;
-            cin >> node >> weight;
-            nodes.push_back(make_pair(node, weight));
-            
-        }
-        cin >> graphx >> graphy;
-        g.dijkstrasalgo();
+        string tileName;
+        int tileCost;
+        cin >> tileName >> tileCost;
+        tilecosts[tileName] = tileCost;
     }
+
+    cin >> mapRows >> mapCols;
+
+    // Read the map grid
+    mapgrid.resize(mapRows, vector<string>(mapCols));
+    for (int i = 0; i < mapRows; i++)
+    {
+        for (int j = 0; j < mapCols; j++)
+        {
+            cin >> mapgrid[i][j];
+        }
+    }
+
+    // Read the start and end positions
+    cin >> startRow >> startCol >> endRow >> endCol;
+
+    // Create the graph
+    graph g;
+    g.v = mapRows * mapCols;
+    g.dist.resize(g.v, INT_MAX);
+
+    // adjancency list with directions
+    vector<pair<int, int>> directions;
+    directions.push_back(pair<int, int>(-1, 0));
+    directions.push_back(pair<int, int>(1, 0));
+    directions.push_back(pair<int, int>(0, -1));
+    directions.push_back(pair<int, int>(0, 1));
+
+    
+
+    // Call Dijkstra's algorithm
+    g.dijkstrasalgo();
+
     return 0;
 }
