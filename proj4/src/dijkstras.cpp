@@ -25,20 +25,21 @@ struct graph {
     int weight;
     int node;
     int v;
-    set<int> visited;
+    // set<int> visited;
     vector<int> dist;
-    int mindist();
+    int mindist(vector<int> distance,vector<bool> visited);
     int dijkstrasalgo();
 };
 
-int graph::mindist()
+int graph::mindist(vector<int> distance,vector<bool> visited)
 {
     
-    int min = INT_MAX, minindex;
-    int verti = 0;
+    int min = INT_MAX;
+    int minindex = -1;
+    int verti = dist.size();
     for (int i = 0; i < verti; i++)
     {
-        if (visited.find(i) == visited.end() && dist[i] <= min)
+        if (!visited[i] && dist[i] <= min)
         {
             min = dist[i];
             minindex = i;
@@ -49,51 +50,79 @@ int graph::mindist()
 }
 
 
-void printSolution(int dist[], int n)
+void printsolution(int dist[], int n)
 {
     int v = n;
     printf("Vertex   Distance from Source\n");
     for (int i = 0; i < v; i++)
-        printf("\t%d \t\t\t\t %d\n", i, dist[i]);
+        printf("\t%d       %d\n", i, dist[i]);
 }
 
 int graph::dijkstrasalgo()
 {
-    int weight = 0;
+    vector<int> distance;
+    vector<bool> visited;
+    int v ;
     int start = 0;
-    int end = 0;
-    priority_queue<int> minqueue;
-
-    // store shortest path somewhere in an int
-    // use a bool to check if the node is the shortest path
-    // use mindist function to actually find the shortest path
-    // update the distances of the nodes
-    // use a priority queue to store the weights
-    
-    // Initialize distances to all vertices as infinite and distance to the source as 0
-    dist.resize(v, INT_MAX);
-    dist[start] = 0;
-
-    // Find shortest path for all vertices
-    for (int count = 0; count < v - 1; count++)
+    for (int i = 0; i < v; i++)
     {
-        // Pick the minimum distance vertex from the set of vertices not yet processed
-        int u = mindist();
-        visited.insert(u);
+        distance.push_back(INT_MAX);
+        visited.push_back(false);
+    }
+    
+    distance[start] = 0;
 
-        // Update dist value of the adjacent vertices of the picked vertex
+    for(int current = 0; current < v - 1; current++)
+    {
+        int u = mindist( distance, visited);
+        visited[u] = true;
+
         for (int i = 0; i < v; i++)
-        {   // double check if this is correct
-            // Update dist[i] if it is not in visited, there is an edge from u to i,
-            // and total weight of path from start to i through u is smaller than current value of dist[i]
-            if (!visited.count(i) && dist[u] != INT_MAX && dist[u] + weight < dist[i])
+        {
+            if (!visited[i] && distance[u] != INT_MAX && distance[u] + weight < distance[i])
             {
-                dist[i] = dist[u] + weight;
+                distance[i] = distance[u] + weight;
             }
         }
+        // printf("%d", visited[u]);
     }
+    printsolution(distance.data(), v);
+   
+    // int weight = 0;
+    // int start = 0;
+    // int end = 0;
+    // priority_queue<int> minqueue;
+
+    // // store shortest path somewhere in an int
+    // // use a bool to check if the node is the shortest path
+    // // use mindist function to actually find the shortest path
+    // // update the distances of the nodes
+    // // use a priority queue to store the weights
+    
+    // // Initialize distances to all vertices as infinite and distance to the source as 0
+    // dist.resize(v, INT_MAX);
+    // dist[start] = 0;
+
+    // // Find shortest path for all vertices
+    // for (int count = 0; count < v - 1; count++)
+    // {
+    //     // Pick the minimum distance vertex from the set of vertices not yet processed
+    //     int u = mindist();
+    //     visited.insert(u);
+
+    //     // Update dist value of the adjacent vertices of the picked vertex
+    //     for (int i = 0; i < v; i++)
+    //     {   // double check if this is correct
+    //         // Update dist[i] if it is not in visited, there is an edge from u to i,
+    //         // and total weight of path from start to i through u is smaller than current value of dist[i]
+    //         if (!visited.count(i) && dist[u] != INT_MAX && dist[u] + weight < dist[i])
+    //         {
+    //             dist[i] = dist[u] + weight;
+    //         }
+    //     }
+    // }
     // Print the constructed distance array
-    printSolution(dist.data(), v);
+    // printsolution(dist.data(), v);
 }
 
 
@@ -155,8 +184,6 @@ int main(int argc, char *argv[])
     directions.push_back(pair<int, int>(1, 0));
     directions.push_back(pair<int, int>(0, -1));
     directions.push_back(pair<int, int>(0, 1));
-
-    
 
     // Call Dijkstra's algorithm
     g.dijkstrasalgo();
