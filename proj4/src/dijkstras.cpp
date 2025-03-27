@@ -64,6 +64,7 @@ int graph::dijkstrasalgo()
     vector<bool> visited;
     int v;
     int start = 0;
+    
     for (int i = 0; i < v; i++)
     {
         distance.push_back(INT_MAX);
@@ -74,11 +75,13 @@ int graph::dijkstrasalgo()
 
     for(int current = 0; current < v - 1; current++)
     {
-        int u = mindist( distance, visited);
+        // find vertex with smallest distance 
+        int u = mindist(distance, visited);
         visited[u] = true;
 
         for (int i = 0; i < v; i++)
         {
+            // if its not visited, not infinite, and weight is less than the distance, add it 
             if (!visited[i] && distance[u] != INT_MAX && distance[u] + weight < distance[i])
             {
                 distance[i] = distance[u] + weight;
@@ -86,6 +89,7 @@ int graph::dijkstrasalgo()
         }
     }
     printsolution(distance.data(), v);
+    // return 0;
    
     // int weight = 0;
     // int start = 0;
@@ -122,6 +126,7 @@ int graph::dijkstrasalgo()
     // }
     // Print the constructed distance array
     // printsolution(dist.data(), v);
+return 0;
 }
 
 
@@ -183,6 +188,7 @@ int main(int argc, char *argv[])
     directions.push_back(pair<int, int>(1, 0));
     directions.push_back(pair<int, int>(0, -1));
     directions.push_back(pair<int, int>(0, 1));
+
 
     
 
