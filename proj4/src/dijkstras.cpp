@@ -57,70 +57,45 @@ int graph::mindist(vector<int> distance, vector<bool> visited)
 
 int graph::dijkstrasalgo()
 {
-    // use this instead of vectors so time complexity is O(log n)
-    // priority_queue<int, std::vector<int>, std::greater<int>> min_pq;
-    vector<int> distance;
-    vector<bool> visited;
-    int v = 0;
-    int start = 0;
-    for (int i = 0; i < v; i++)
-    {
-        distance.push_back(INT_MAX);
-        visited.push_back(false);
-    }
+    // Priority queue to store (distance, vertex) pairs, sorted by distance
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> min_pq;
 
+    vector<bool> visited(v, false);
+    vector<int> distance(v, INT_MAX);
+
+    int start = 0; // Assuming the start node is 0
     distance[start] = 0;
 
-    for (int current = 0; current < v - 1; current++)
+    // Push the start node into the priority queue
+    min_pq.push({0, start});
+
+    while (!min_pq.empty())
     {
-        int u = mindist(distance, visited);
+        // Extract the node with the smallest distance
+        int u = min_pq.top().second;
+        min_pq.pop();
+
+        // If the node is already visited, skip it
+        if (visited[u])
+            continue;
+
         visited[u] = true;
 
+        // Iterate through all neighbors of the current node
         for (int i = 0; i < v; i++)
         {
+            // Check if there's an edge and the node is not visited
             if (!visited[i] && distance[u] != INT_MAX && distance[u] + weight < distance[i])
             {
                 distance[i] = distance[u] + weight;
+
+                // Push the updated distance and node into the priority queue
+                min_pq.push({distance[i], i});
             }
         }
     }
+
     printsolution(distance.data(), v);
-
-    // int weight = 0;
-    // int start = 0;
-    // int end = 0;
-    // priority_queue<int> minqueue;
-
-    // // store shortest path somewhere in an int
-    // // use a bool to check if the node is the shortest path
-    // // use mindist function to actually find the shortest path
-    // // update the distances of the nodes
-    // // use a priority queue to store the weights
-
-    // // Initialize distances to all vertices as infinite and distance to the source as 0
-    // dist.resize(v, INT_MAX);
-    // dist[start] = 0;
-
-    // // Find shortest path for all vertices
-    // for (int count = 0; count < v - 1; count++)
-    // {
-    //     // Pick the minimum distance vertex from the set of vertices not yet processed
-    //     int u = mindist();
-    //     visited.insert(u);
-
-    //     // Update dist value of the adjacent vertices of the picked vertex
-    //     for (int i = 0; i < v; i++)
-    //     {   // double check if this is correct
-    //         // Update dist[i] if it is not in visited, there is an edge from u to i,
-    //         // and total weight of path from start to i through u is smaller than current value of dist[i]
-    //         if (!visited.count(i) && dist[u] != INT_MAX && dist[u] + weight < dist[i])
-    //         {
-    //             dist[i] = dist[u] + weight;
-    //         }
-    //     }
-    // }
-    // Print the constructed distance array
-    // printsolution(dist.data(), v);
     return 0;
 }
 
@@ -159,7 +134,7 @@ int main(int argc, char *argv[])
     cin >> mapRows >> mapCols;
 
     // Read the map grid
-    mapgrid.resize(mapRows * mapCols);
+    mapgrid.resize(mapRows, vector<string>(mapCols));
     for (int i = 0; i < mapRows; i++)
     {
         for (int j = 0; j < mapCols; j++)
@@ -176,47 +151,7 @@ int main(int argc, char *argv[])
     g.v = mapRows * mapCols;
     g.dist.resize(g.v, INT_MAX);
 
-    // adjancency list with directions
-    vector<pair<int, int>> directions;
-    directions.push_back(pair<int, int>(-1, 0));
-    directions.push_back(pair<int, int>(1, 0));
-    directions.push_back(pair<int, int>(0, -1));
-    directions.push_back(pair<int, int>(0, 1));
-
-    // Create the graph
-    // for (int i = i; i < mapRows; i++)
-    // {
-    //     for (int j = 0; j < mapCols; j++)
-    //     {
-    //         // Calc current  index 
-    //         int current = i * mapCols + j;
-
-    //         // go through diff directions
-    //         for (int d = 0; d < directions.size(); d++)
-    //         {
-    //             // Calculate the new row and column based on the current direction
-    //             int newRow = i + directions[d].first;
-    //             int newCol = j + directions[d].second;
-
-    //             // check if in bounds
-    //             if (newRow >= 0 && newRow < mapRows && newCol >= 0 && newCol < mapCols)
-    //             {
-    //                 // Calculate the neighbor node index based on the new row and column
-    //                 int neighbor = newRow * mapCols + newCol;
-
-    //                 // Get the weight (cost) of moving to the neighboring tile
-    //                 int weight = travelcost[mapgrid[newRow][newCol]];
-                  
-
-    //                 // Add edge to the graph (you can use adjacency list or matrix)
-    //                 // For simplicity, you can store edges in a vector of tuples
-    //                 // Example: edges.push_back(make_tuple(currentNode, neighborNode, weight));
-    //             }
-    //         }
-    //     }
-    // }
-
-    // Call Dijkstra's algorithm
+    // Call the Dijkstra's algorithm function
     g.dijkstrasalgo();
 
     return 0;
