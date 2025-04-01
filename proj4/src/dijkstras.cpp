@@ -28,6 +28,7 @@ struct graph
     vector<int> dist;
     int mindist(vector<int> distance, vector<bool> visited);
     int dijkstrasalgo();
+    void printsolution(int dist[], int n);
 
 };
 void printsolution(int dist[], int n)
@@ -121,6 +122,7 @@ int main(int argc, char *argv[])
 
     // Read the number of tile types
     cin >> numpairs;
+    cout << "Number of tile types: " << numpairs << endl;
 
     // Read tile names and their costs
     for (int i = 0; i < numpairs; i++)
@@ -153,6 +155,7 @@ int main(int argc, char *argv[])
 
     // Call the Dijkstra's algorithm function
     g.dijkstrasalgo();
+    g.printsolution(g.dist.data(), g.v);
 
     return 0;
 }
