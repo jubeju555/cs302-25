@@ -55,10 +55,10 @@ int graph::mindist(vector<int> distance, vector<bool> visited)
     return minindex;
 }
 
-
-
 int graph::dijkstrasalgo()
 {
+    // use this instead of vectors so time complexity is O(log n)
+    // priority_queue<int, std::vector<int>, std::greater<int>> min_pq;
     vector<int> distance;
     vector<bool> visited;
     int v = 0;
@@ -184,37 +184,37 @@ int main(int argc, char *argv[])
     directions.push_back(pair<int, int>(0, 1));
 
     // Create the graph
-    for (int i = i; i < mapRows; i++)
-    {
-        for (int j = 0; j < mapCols; j++)
-        {
-            // Calc current  index 
-            int current = i * mapCols + j;
+    // for (int i = i; i < mapRows; i++)
+    // {
+    //     for (int j = 0; j < mapCols; j++)
+    //     {
+    //         // Calc current  index 
+    //         int current = i * mapCols + j;
 
-            // go through diff directions
-            for (int d = 0; d < directions.size(); d++)
-            {
-                // Calculate the new row and column based on the current direction
-                int newRow = i + directions[d].first;
-                int newCol = j + directions[d].second;
+    //         // go through diff directions
+    //         for (int d = 0; d < directions.size(); d++)
+    //         {
+    //             // Calculate the new row and column based on the current direction
+    //             int newRow = i + directions[d].first;
+    //             int newCol = j + directions[d].second;
 
-                // check if in bounds
-                if (newRow >= 0 && newRow < mapRows && newCol >= 0 && newCol < mapCols)
-                {
-                    // Calculate the neighbor node index based on the new row and column
-                    int neighbor = newRow * mapCols + newCol;
+    //             // check if in bounds
+    //             if (newRow >= 0 && newRow < mapRows && newCol >= 0 && newCol < mapCols)
+    //             {
+    //                 // Calculate the neighbor node index based on the new row and column
+    //                 int neighbor = newRow * mapCols + newCol;
 
-                    // Get the weight (cost) of moving to the neighboring tile
-                    int weight = travelcost[mapgrid[newRow][newCol]];
+    //                 // Get the weight (cost) of moving to the neighboring tile
+    //                 int weight = travelcost[mapgrid[newRow][newCol]];
                   
 
-                    // Add edge to the graph (you can use adjacency list or matrix)
-                    // For simplicity, you can store edges in a vector of tuples
-                    // Example: edges.push_back(make_tuple(currentNode, neighborNode, weight));
-                }
-            }
-        }
-    }
+    //                 // Add edge to the graph (you can use adjacency list or matrix)
+    //                 // For simplicity, you can store edges in a vector of tuples
+    //                 // Example: edges.push_back(make_tuple(currentNode, neighborNode, weight));
+    //             }
+    //         }
+    //     }
+    // }
 
     // Call Dijkstra's algorithm
     g.dijkstrasalgo();
