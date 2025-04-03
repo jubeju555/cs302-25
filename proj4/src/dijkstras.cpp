@@ -24,11 +24,14 @@ struct graph
     int weight = 0;
     int node;
     int v;
+    int mapRows, mapCols;
     // set<int> visited;
+    map<string, int> travelcost;
     vector<int> dist;
     vector<vector<int>> adjMatrix;
     int mindist(vector<int> distance, vector<bool> visited);
     int dijkstrasalgo();
+    vector<vector<string>> mapgrid; // Add mapgrid as a member of the graph struct
     
 
 };
@@ -87,7 +90,7 @@ int graph::dijkstrasalgo()
         for (int i = 0; i < v; i++)
         {
             // Calculate the weight dynamically based on the graph representation
-            int edgeWeight = adjMatrix[u][i]; // Assuming a weight of 1 for each edge
+            int edgeWeight = travelcost[mapgrid[u / mapCols][u % mapCols]]; 
             if (!visited[i] && distance[u] != INT_MAX && distance[u] + edgeWeight < distance[i])
             {
                 distance[i] = distance[u] + edgeWeight;
@@ -153,7 +156,10 @@ int main(int argc, char *argv[])
     graph g;
     g.v = mapRows * mapCols;
     g.dist.resize(g.v, INT_MAX);
+    // Assign mapgrid to the graph object
+    g.mapgrid = mapgrid;
 
+    // Call the Dijkstra's algorithm function
     // Call the Dijkstra's algorithm function
     g.dijkstrasalgo();
     // g.printsolution(g.dist.data(), g.v);
