@@ -26,9 +26,10 @@ struct graph
     int v;
     // set<int> visited;
     vector<int> dist;
+    vector<vector<int>> adjMatrix;
     int mindist(vector<int> distance, vector<bool> visited);
     int dijkstrasalgo();
-    void printsolution(int dist[], int n);
+    
 
 };
 void printsolution(int dist[], int n)
@@ -46,13 +47,13 @@ int graph::mindist(vector<int> distance, vector<bool> visited)
     int verti = distance.size();
     for (int i = 0; i < verti; i++)
     {
-        if (!visited[i] && dist[i] <= min)
+        if (!visited[i] && distance[i] <= min) // Use 'distance' instead of 'dist'
         {
-            min = dist[i];
+            min = distance[i];
             minindex = i;
         }
     }
-    printf("%d", minindex);
+printf("%d", minindex);
     return minindex;
 }
 
@@ -85,10 +86,11 @@ int graph::dijkstrasalgo()
         // Iterate through all neighbors of the current node
         for (int i = 0; i < v; i++)
         {
-            // Check if there's an edge and the node is not visited
-            if (!visited[i] && distance[u] != INT_MAX && distance[u] + weight < distance[i])
+            // Calculate the weight dynamically based on the graph representation
+            int edgeWeight = adjMatrix[u][i]; // Assuming a weight of 1 for each edge
+            if (!visited[i] && distance[u] != INT_MAX && distance[u] + edgeWeight < distance[i])
             {
-                distance[i] = distance[u] + weight;
+                distance[i] = distance[u] + edgeWeight;
 
                 // Push the updated distance and node into the priority queue
                 min_pq.push({distance[i], i});
@@ -122,7 +124,6 @@ int main(int argc, char *argv[])
 
     // Read the number of tile types
     cin >> numpairs;
-    cout << "Number of tile types: " << numpairs << endl;
 
     // Read tile names and their costs
     for (int i = 0; i < numpairs; i++)
@@ -155,7 +156,7 @@ int main(int argc, char *argv[])
 
     // Call the Dijkstra's algorithm function
     g.dijkstrasalgo();
-    g.printsolution(g.dist.data(), g.v);
+    // g.printsolution(g.dist.data(), g.v);
 
     return 0;
 }
