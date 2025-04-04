@@ -46,6 +46,7 @@ void printsolution(vector<int> &dist, vector<int> &parent, int start, int end, i
         int col = v % mapcols;
         path.push_back(make_pair(row, col));
         v = parent[v];
+        cout << v << endl;
     }
 
     // path backwards
@@ -116,12 +117,12 @@ int graph::dijkstrasalgo()
             int newrow = row + directions[i].first;
             int newcol = col + directions[i].second;
 
-            // Check if the neighbor is within bounds
+            // within bounds
             if (newrow >= 0 && newrow < maprows && newcol >= 0 && newcol < mapcols)
             {
                 int neighbor = newrow * mapcols + newcol;
 
-                // Calculate the weight  based on the graph 
+                // adds weights as it goes through graph
                 string tiletype = mapgrid[newrow][newcol];
                 if (travelcost.find(tiletype) != travelcost.end())
                 {
@@ -131,7 +132,7 @@ int graph::dijkstrasalgo()
                         dist[neighbor] = dist[u] + edgeWeight;
                         parent[neighbor] = u;
 
-                        // Push the updated distand node into the priority queue
+                        // add new node to pq
                         minpq.push(make_pair(dist[neighbor], neighbor));
                     }
                 }
@@ -159,7 +160,7 @@ int main()
     int numpairs;
     cin >> numpairs;
 
-    //  tile names and their` cost`s
+    //  tile names and their cost`s
     for (int i = 0; i < numpairs; i++)
     {
         string tileName;
@@ -187,9 +188,7 @@ int main()
     g.v = g.maprows * g.mapcols;
     g.dist.resize(g.v, INT_MAX);
 
-    // Call the Dijkstra's algorithm function
     g.dijkstrasalgo();
-    // g.printsolution(g.dist.data(), g.v);
 
     return 0;
 }
