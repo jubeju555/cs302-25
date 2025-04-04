@@ -139,8 +139,6 @@ int graph::dijkstrasalgo()
             }
         }
     }
-
-    
     printsolution(dist, parent, start, end, mapcols);
     return 0;
 }
@@ -162,7 +160,7 @@ int main()
     int numpairs;
     cin >> numpairs;
 
-    //  tile names and t`heir` cost`s
+    //  tile names and their` cost`s
     for (int i = 0; i < numpairs; i++)
     {
         string tileName;
