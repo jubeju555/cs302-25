@@ -40,7 +40,7 @@ void printsolution(int dist[], int n)
     int v = n;
     printf("Vertex   Distance from Source\n");
     for (int i = 0; i < v; i++)
-        printf("\t%d       %d\n", i, dist[i]);
+        printf("\t%d   %d\n", i, dist[i]);
 }
 int graph::mindist(vector<int> distance, vector<bool> visited)
 {
@@ -64,7 +64,7 @@ printf("%d", minindex);
 int graph::dijkstrasalgo()
 {
     // (distance, vertex) pairs, sorted by distance
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> min_pq;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minpq;
 
     vector<bool> visited(v, false);
     vector<int> distance(v, INT_MAX);
@@ -73,14 +73,14 @@ int graph::dijkstrasalgo()
     distance[start] = 0;
 
     
-    min_pq.push(make_pair(0, start));
+    minpq.push(make_pair(0, start));
 
-    while (!min_pq.empty())
+    while (!minpq.empty())
     {
         // Extract the node with the smallest distance
-        pair<int, int> topElement = min_pq.top();
+        pair<int, int> topElement = minpq.top();
         int u = topElement.second;
-        min_pq.pop();
+        minpq.pop();
 
     
         if (visited[u]) continue;
@@ -119,7 +119,7 @@ int graph::dijkstrasalgo()
                         distance[neighbor] = distance[u] + edgeWeight;
 
                         // Push the updated distance and node into the priority queue
-                        min_pq.push(make_pair(distance[neighbor], neighbor));
+                        minpq.push(make_pair(distance[neighbor], neighbor));
                     }
                 }
             }
@@ -149,7 +149,7 @@ int main(int argc, char *argv[])
     int mapRows, mapCols;
     vector<vector<string>> mapgrid;
     int startRow, startCol, endRow, endCol;
-
+    
     cin >> numpairs;
 
     //  tile names and their costs
@@ -170,10 +170,15 @@ int main(int argc, char *argv[])
         for (int j = 0; j < mapCols; j++)
         {
             cin >> mapgrid[i][j];
+            
         }
     }
-
+    
     cin >> startRow >> startCol >> endRow >> endCol;
+// cout << "Start Position: (" << startRow << ", " << startCol << ")" << endl;
+// cout << "End Position: (" << endRow << ", " << endCol << ")" << endl;
+
+
 
     // Create the graph
     graph g;
@@ -181,6 +186,8 @@ int main(int argc, char *argv[])
     g.dist.resize(g.v, INT_MAX);
 
     g.mapgrid = mapgrid;
+    
+    
 
     
     // Call the Dijkstra's algorithm function
