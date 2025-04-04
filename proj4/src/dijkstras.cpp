@@ -31,11 +31,11 @@ struct graph
 
     // int mindist(vector<int> distance, vector<bool> visited);
     int dijkstrasalgo();
+    void printsolution(vector<int> &dist, vector<int> &parent, int start, int end, int mapcols);
 };
-void printsolution(vector<int> &dist, vector<int> &parent, int start, int end, int mapcols)
+void graph::printsolution(vector<int> &dist, vector<int> &parent, int start, int end, int mapcols)
 {
-    // distance
-    cout << dist[end] << endl;
+  
 
     // path
     vector<pair<int, int>> path;
@@ -46,8 +46,22 @@ void printsolution(vector<int> &dist, vector<int> &parent, int start, int end, i
         int col = v % mapcols;
         path.push_back(make_pair(row, col));
         v = parent[v];
-        cout << v << endl;
+        // debugging
+        // cout << v << endl;
     }
+
+  // distance
+    // cout << dist[end] << endl;
+    int totalCost = 0;
+    for (size_t i = 1; i < path.size(); i++)  // Skip the first node
+    {
+        int row = path[i].first;
+        int col = path[i].second;
+        string tile = mapgrid[row][col];
+        totalCost += travelcost[tile];
+    }
+
+    cout << totalCost << endl;
 
     // path backwards
     reverse(path.begin(), path.end());
