@@ -22,23 +22,22 @@ we can use like a min heap and keep finding the smallest way to a encompass the 
 struct graph
 {
     int weight = 0;
-    int node;
-    int v;
+    int node, v;
     int maprows, mapcols, startrow, startcol, endrow, endcol;
-    // set<int> visited;
     map<string, int> travelcost;
     vector<int> dist;
     vector<vector<int>> adjMatrix;
-    int mindist(vector<int> distance, vector<bool> visited);
-    int dijkstrasalgo();
     vector<vector<string>> mapgrid;
+
+    // int mindist(vector<int> distance, vector<bool> visited);
+    int dijkstrasalgo();
 };
 void printsolution(vector<int> &dist, vector<int> &parent, int start, int end, int mapcols)
 {
-    // Print the shortest distance to the goal
+    // distance
     cout << dist[end] << endl;
 
-    // Reconstruct the path
+    // path
     vector<pair<int, int>> path;
     int v = end;
     while (v != -1)
@@ -49,7 +48,7 @@ void printsolution(vector<int> &dist, vector<int> &parent, int start, int end, i
         v = parent[v];
     }
 
-    // Reverse and print the path
+    // path backwards
     reverse(path.begin(), path.end());
     for (size_t i = 0; i < path.size(); i++)
     {
@@ -57,24 +56,24 @@ void printsolution(vector<int> &dist, vector<int> &parent, int start, int end, i
     }
 }
 
-int graph::mindist(vector<int> distance, vector<bool> visited)
-{
+// int graph::mindist(vector<int> distance, vector<bool> visited)
+// {
 
-    int min = INT_MAX;
-    int minindex = -1;
-    int verti = distance.size();
-    for (int i = 0; i < verti; i++)
-    {
-        // holy shit use distand not dist
-        if (!visited[i] && distance[i] <= min)
-        {
-            min = distance[i];
-            minindex = i;
-        }
-    }
-    printf("%d", minindex);
-    return minindex;
-}
+//     int min = INT_MAX;
+//     int minindex = -1;
+//     int verti = distance.size();
+//     for (int i = 0; i < verti; i++)
+//     {
+//         // holy shit use distand not dist
+//         if (!visited[i] && distance[i] <= min)
+//         {
+//             min = distance[i];
+//             minindex = i;
+//         }
+//     }
+//     printf("%d", minindex);
+//     return minindex;
+// }
 
 int graph::dijkstrasalgo()
 {
@@ -144,7 +143,7 @@ int graph::dijkstrasalgo()
 }
 
 /*
-- order of read in
+(order of read in)
 amount of pairs
 pairs
 graph(rows, columns)
@@ -154,9 +153,9 @@ target row target col
 
 int main()
 {
+    // just use the graph, nothing else
     graph g;
 
-    // order of read in
     int numpairs;
     cin >> numpairs;
 
