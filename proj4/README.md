@@ -1,20 +1,15 @@
 to compile and run both programs, use make test
 
-10, 20, 50, 100, 200, 500, 1000
-Benchmark your dijkstras path finding component on each of these map sizes and record the elapsed time and memory usage in a Markdown table as demonstrated below:
 
-| N    | Elapsed Time (s) | Memory Used (MB) |
-|------|------------------|------------------|
-| 10   | 1.68339           | 5994.03            |
-| 20   | 9.98461           | 6012.1            |
-| 50   | 0.200047           | 3.31172            |
-| 100   | 1.73549           | 6021.53            |
-| 200   | 16.285           | 12044.5            |
-| 500   | 13.3735           | 11814.9            |
-| 1000   | 7.6066           | 11600            |
-Note: You should run multiple trials (e.g 5) and average the results.
+N	Avg Elapsed Time (s)	Avg Memory Used (MB)
+10	    3.6525	                11326.07
+20	    7.5492	                10231.66
+50	    3.69233	                8921.29
+100 	9.58012	                10910.31
+200 	12.86918	            10591.29
+500	    9.95938	                11347.13
+1000	8.60651	                10345.7
 
-Note: You should choose the top-left and bottom-right corners as the starting and ending points respectively.
 
 How did you represent the map as a graph?
 
