@@ -1,7 +1,4 @@
-Additional questions
-When you are finished implementing your dijkstras implementation answer the following questions in your README.md :
-
-Write a program, generate_map, that given N generates a NxN map of random tiles. Use this program to generate random maps with the following values of N:
+to compile and run both programs, use make test
 
 10, 20, 50, 100, 200, 500, 1000
 Benchmark your dijkstras path finding component on each of these map sizes and record the elapsed time and memory usage in a Markdown table as demonstrated below:
