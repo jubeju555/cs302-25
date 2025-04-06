@@ -178,7 +178,7 @@ int main()
     // cout << "End Position: (" << endrow << ", " << endcol << ")" << endl;
 
     g.v = g.maprows * g.mapcols;
-    g.dist.resize(g.v, INT_MAX);
+    // g.dist.resize(g.v, INT_MAX);
 
     g.dijkstrasalgo();
 
