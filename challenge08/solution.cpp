@@ -1,5 +1,10 @@
 // Challenge 08: sequence alignment
-
+/*
+judah benjamin 
+challenge 8 
+april 9
+computes the value of the cell using dynamic programming
+*/
 #include <iostream>
 #include <map>
 #include <string>
@@ -29,7 +34,6 @@ int calcscore(string str1, string str2)
             int match = (str2[i - 1] == str1[j - 1]) ? 1 : -1;
             // score for diag, up, left
             score[i][j] = max({score[i - 1][j - 1] + match, score[i - 1][j] - 1, score[i][j - 1] - 1});
-            // cout << score[i][j] ;
         }
         
     }
